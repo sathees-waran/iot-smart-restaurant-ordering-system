@@ -27,8 +27,8 @@ Adafruit_PN532 nfc(PN532_SS);
 #define RESET_BUTTON_PIN 4
 
 // --- WiFi credentials ---
-#define WIFI_SSID "xyz"
-#define WIFI_PASSWORD "****"
+#define WIFI_SSID "YOUR_WIFI_NAME"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
 
 // --- Firestore Query URL ---
 #define FIRESTORE_QUERY_URL "https://firestore.googleapis.com/v1/projects/foodapp231/databases/(default)/documents:runQuery"
