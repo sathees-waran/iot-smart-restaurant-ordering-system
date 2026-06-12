@@ -177,11 +177,11 @@ git clone https://github.com/sathees-waran/iot-smart-restaurant-ordering-system.
 
 ## Team Members
 
-| Name | Roll Number |
-|------|-------------|
-| Santhosh P | 2116220801183 |
-| Satheeswaran M | 2116220801188 |
-| Sivan P | 2116220801202 |
+| Name |
+|------|
+| Santhosh P |
+| Satheeswaran M |
+| Sivan P |
 
 **Supervisor:** Dr. Thilakavathi B, M.E, Ph.D, Professor
 **Department:** Electronics and Communication Engineering
