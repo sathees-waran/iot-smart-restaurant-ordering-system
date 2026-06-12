@@ -1,10 +1,11 @@
-// ============================================================
+// ======================================================================
 // Project  : IoT-Based Smart Restaurant Ordering System
 // Author   : Satheeswaran M
-// Hardware : ESP32, PN532 RFID Module, L298N Motor Driver
-// Function : Reads RFID tags to control conveyor belt motors
+// Hardware : ESP32, PN532 RFID Module, L298N Motor Driver, li-on Battery
+// Function : Reads RFID tags to control the Tray motors
 //            and fetches latest orders from Firebase Firestore
-// ============================================================
+//            and Deliver the food to the correct Table.
+// ========================================================================
 
 #include <SPI.h>
 #include <Adafruit_PN532.h>
