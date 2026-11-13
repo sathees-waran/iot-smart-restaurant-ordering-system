@@ -143,7 +143,7 @@ Chef updates status — Customer notified
 ```bash
 git clone https://github.com/sathees-waran/iot-smart-restaurant-ordering-system.git
 ```
-2. Open `final_test1.ino` in Arduino IDE
+2. Open `Smart_Restaurant_Ordering_System.ino` in Arduino IDE
 3. Install required libraries:
    - Adafruit PN532
    - ArduinoJson
