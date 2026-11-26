@@ -2,7 +2,7 @@
 // Project  : IoT-Based Smart Restaurant Ordering System
 // Author   : Satheeswaran M
 // Hardware : ESP32, PN532 RFID Module, L298N Motor Driver, li-on Battery
-// Function : Reads RFID tags to control the Tray motors
+// Function : Reads RFID tags to control the automated food delivery cart's motors
 //            and fetches latest orders from Firebase Firestore
 //            and Deliver the food to the correct Table.
 // ========================================================================
@@ -64,10 +64,10 @@ const int   daylightOffset_sec = 0;   // No daylight saving in India
 // Each tag is 4 bytes (Mifare Classic 1K)
 // ─────────────────────────────────────────────
 
-// STOP tag: permanently stops the conveyor belt
+// // STOP tag: permanently stops the cart
 byte stopUID[] = {0x05, 0xE0, 0xA1, 0x02};
 
-// PAUSE tags: one per table — pauses belt for 30 seconds
+// PAUSE tags: one per table — pauses cart for 30 seconds
 // when the correct table's card is scanned during delivery
 byte pauseUIDs[][4] = {
   {0x15, 0x87, 0x87, 0x02},  // Table 1
@@ -149,7 +149,7 @@ void loop() {
   if (permanentlyStopped || !motorRunning) {
     stopMotors();   // Keep motors off if stopped or paused
   } else {
-    runMotors();    // Run conveyor belt normally
+    runMotors();    // Run cart normally
   }
 
   // --- RFID Tag Scanning ---
@@ -166,7 +166,7 @@ void loop() {
 
     if (uidLength == 4) {  // Only process standard 4-byte Mifare UIDs
 
-      // Check if STOP tag is scanned — permanently halts the belt
+      // Check if STOP tag is scanned — permanently halts the cart
       if (memcmp(uid, stopUID, 4) == 0) {
         Serial.println("STOP tag detected. Motors permanently stopped.");
         permanentlyStopped = true;
@@ -175,7 +175,7 @@ void loop() {
       // Check if a PAUSE tag is scanned (only when a table is active and not stopped)
       else if (!permanentlyStopped && activeTableIndex >= 0) {
         if (memcmp(uid, pauseUIDs[activeTableIndex], 4) == 0) {
-          // Correct table's card scanned — pause belt for food delivery
+          // Correct table's card scanned — pause cart for food delivery
           Serial.print("Correct card for active Table detected (Table ");
           Serial.print(activeTableIndex + 1);
           Serial.println(")! Pausing motors...");
@@ -183,7 +183,7 @@ void loop() {
           stopMotors();
           delay(30000);  // Wait 30 seconds for food to be picked up
 
-          // Resume belt after pause (unless permanently stopped)
+          // Resume cart after pause (unless permanently stopped)
           if (!permanentlyStopped) {
             Serial.println("Resuming motors...");
             motorRunning = true;
